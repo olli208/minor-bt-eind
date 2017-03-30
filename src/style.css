@@ -1,0 +1,170 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+    padding: 0;
+    margin: 0;
+    font-size: 3em;
+    color: #f9f9f9;
+}
+
+p {
+    color: #f9f9f9;
+    margin-bottom: 2em;
+}
+
+section {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.results {
+    color: white;
+    margin-top: 2em;
+}
+
+body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background: cadetblue;
+}
+
+ul li {
+    list-style: none;
+    margin-bottom: 5em;
+}
+
+ul a {
+    text-decoration: none;
+    color: #f9f9f9;
+}
+
+img {
+    width: 100%;
+}
+
+header {
+    padding: 1.5em 0;
+    margin: 2.5em 0;
+}
+
+#cache-url li {
+    list-style: circle;
+    margin-bottom: 0.5em;
+}
+
+#searchBar {
+    display: inline-block;
+    padding: 0.5em;
+    border-radius:10px 10px 0 0;
+    width: 100%;
+    font-size: 1.5em;
+}
+
+#searchBar__btn {
+    width: 100%;
+    padding: 0.5em;
+    background: cadetblue;
+    color: #f9f9f9;
+    font-size: 1.5em;
+    border: 0;
+    border-radius: 0 0 10px 10px;
+}
+
+#searchBar__btn:hover {
+    background: goldenrod;
+    color: #40474f;
+}
+
+#artContainer {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 100%;
+}
+
+.art {
+    display: block;
+    height: 5em;
+    width: 100%;
+    margin-bottom: 10em;
+    margin-top: 10em;
+}
+
+h2 {
+    margin-bottom: 0.5em;
+    padding: 0 0.5em;
+    border-left: 7px solid goldenrod;
+    font-size: 1.5em;
+    color: #f9f9f9;
+}
+
+.section__show {
+    display: block;
+}
+
+.section__hide {
+    display: none;
+}
+
+.spinner {
+    margin: 1em auto;
+    width: 6em;
+    height: 4em;
+    text-align: center;
+}
+
+.spinner div {
+    height: 100%;
+    background-color: goldenrod;
+    width: 0.9em;
+    display: inline-block;
+    animation: sk-stretchdelay 1.4s infinite ease-in-out;
+}
+
+.spinner .rect2 {
+    -webkit-animation-delay: -1.2s;
+    animation-delay: -1.2s;
+}
+
+.spinner .rect3 {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+}
+
+.spinner .rect4 {
+    -webkit-animation-delay: -0.8s;
+    animation-delay: -0.8s;
+}
+
+@-webkit-keyframes sk-stretchdelay {
+    0%, 40%, 100% { -webkit-transform: scaleY(0.4) }
+    20% { -webkit-transform: scaleY(1.0) }
+}
+
+@keyframes sk-stretchdelay {
+    0%, 40%, 100% {
+        transform: scaleY(0.4);
+        -webkit-transform: scaleY(0.4);
+    }  20% {
+           transform: scaleY(1.0);
+           -webkit-transform: scaleY(1.0);
+       }
+}
+
+@media screen and (min-width: 40em){
+    h1 {
+        font-size: 6em;
+    }
+
+    .art {
+        height: 25em;
+        margin: 13em 0;
+    }
+}

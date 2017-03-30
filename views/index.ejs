@@ -1,0 +1,21 @@
+<% include partials/head.ejs %>
+    <header>
+        <h1>List</h1>
+        <nav>
+            <a href="savedlists">SAVED lists</a>
+        </nav>
+    </header>
+    <form action="/add" method="post">
+        <input type="text" name="query" placeholder="Add Somethings" autofocus>
+        <button id="additem">add item</button>
+
+        <ul id="taskList" name="mylist">
+            <% listArray.forEach(function(listItem){ %>
+            <li>
+                <h2><%= listItem %></h2>
+                <button type="button" class="close">remove</button>
+            </li>
+            <% }) %>
+        </ul>
+    </form>
+<% include partials/footer.ejs %>
