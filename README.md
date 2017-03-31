@@ -15,25 +15,29 @@ The app works on old and new browsers. Older browser have limited functionality 
 ![Internet Explorer 8](ie.png)
 
 ## Device Support
-most browser on mobile Devices. Should work on Kindle althoug functionality is limited.
+most browser on mobile Devices. Should work on Kindle although functionality is limited.
+
+On mobile:
 ![android Chrome](images/mobile.jpg)
 
 ## Fallback
 Here are some of the problems I encoutenred:
-- problem #1 preventdefault doesnt work. 
+- problem #1 preventdefault doesnt work (on IE). 
 fix
 ```
  ecvent.returnValue = false;
  // for event.preventDefault
 ```
 - problem #2 forEach deos not work on IE. fix: no forEach loops, only normal for loops
-- problem #3 e.target.matches  is not supported. 
+- problem #3 e.target.matches is not supported (on IE). 
 fix: 
 ```
 e.target.msMatchesSelector 
 ```
 - problem #4 autofocus on textbox does not work.
 - problem #5 querySelector does not work on ie 8. 
+
+The reason for the server side version is to handle the app without JavaScript enabled. When the user has it disabled all new list items will be send to the server and stored there. When the Javascript is enabled again the server side list items will be added to the client side version. Problem is that the server side list items cant be deleted. 
 
 ## Run app
 When you have [NODE](https://nodejs.org/en/) & [NPM](https://www.npmjs.com/) on your computer run the following command:
