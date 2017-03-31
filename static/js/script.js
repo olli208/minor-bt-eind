@@ -42,6 +42,11 @@ function remove(e) {
 
     matches = e.target.matches ? e.target.matches('BUTTON.close') : e.target.msMatchesSelector('BUTTON.close');
     if (matches) {
+        if (e.preventDefault) {
+            e.preventDefault();
+        } else {
+            e.returnValue = false;
+        }
         e.target.parentNode.parentNode.removeChild(e.target.parentNode);
 
         var list = JSON.parse(localStorage.getItem("myList")) || {};

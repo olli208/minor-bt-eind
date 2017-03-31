@@ -34,8 +34,6 @@ function home(req, res) {
 }
 
 function addList(req, res) {
-    console.log(req.body.query);
-
     if (req.body.query === '') {
         res.render('index', {
             error: 'Vul alstublieft iets in',
