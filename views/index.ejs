@@ -1,12 +1,11 @@
 <% include partials/head.ejs %>
     <header>
-        <h1>List</h1>
-        <nav>
-            <a href="savedlists">SAVED lists</a>
-        </nav>
+        <h1>To-do List</h1>
+
     </header>
     <form action="/add" method="post">
-        <input type="text" name="query" placeholder="Add Somethings" autofocus>
+        <h2><%= error %></h2>
+        <input required="required" pattern="{1}" type="text" name="query" placeholder="Add Somethings" autofocus>
         <button id="additem">add item</button>
 
         <ul id="taskList" name="mylist">

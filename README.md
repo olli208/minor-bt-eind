@@ -1,7 +1,5 @@
 # make-a-list app demo
 
-[link will be here]()
-
 ## Description
 This demo is made using plain html, css and js. The idea was to start small: make a list where you can delete stuff. Making it work well with older browsers like IE 9. Working my way up to newer versions adding newer features. 
 
@@ -34,8 +32,6 @@ localhost:3000
 - [quirksmode (Event Delegation)](http://www.quirksmode.org/js/events_order.html)
 - [e.target.matches fix](http://stackoverflow.com/questions/37304037/why-my-code-dont-working-in-ie11)
 - [preventdefault fix](http://stackoverflow.com/questions/4479216/does-internet-explorer-supports-e-preventdefault)
-- [Javascript get index of child on click
-   
-](https://stackoverflow.com/questions/20818790/javascript-get-index-of-child-on-click)
+- [Javascript get index of child on click](https://stackoverflow.com/questions/20818790/javascript-get-index-of-child-on-click)
 -[remove item from array in localstorage](https://stackoverflow.com/questions/39725221/remove-an-item-from-an-array-inside-a-local-storage-object-with-javascripthttps://stackoverflow.com/questions/20818790/javascript-get-index-of-child-on-click)
 

@@ -28,9 +28,6 @@ function addEvent(evnt, elem, func) {
     }
 }
 
-// document.querySelector('form').addEventListener('submit', add);
-// document.querySelector('ul').addEventListener('click', remove);
-
 addEvent();
 show();
 
@@ -51,14 +48,13 @@ function remove(e) {
         var items = list || [];
         for (var x = 0; x < items.length; x++) {
             if (items[x]) {
-                // The i is index of child node that we got ealier
+                // The i is index of child node that we got earlier
                 items.splice(i, 1);
                 break;
             }
         }
         localStorage.setItem("myList", JSON.stringify(list));
     }
-    console.log(storage());
 }
 
 function children(e) {
@@ -90,6 +86,7 @@ function add(e) {
         list.push(query);
         localStorage.setItem('myList', JSON.stringify(list));
     }
+    console.log(storage());
 
     document.querySelector('input').value = "";
     appendXBtn(node);

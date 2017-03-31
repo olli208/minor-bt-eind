@@ -5,8 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
-    "x": "ngrok http 3000",
-    "build": "browserify src/index.js -o static/build.js"
+    "x": "ngrok http 3000"
   },
   "dependencies": {
     "express": "^4.15.2",

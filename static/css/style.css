@@ -6,9 +6,74 @@ html {
 body {
     margin: 0;
     padding: 0;
+    font-family: 'Roboto Condensed', sans-serif;
+    background: lightsteelblue;
 }
 
 header {
+    height: 5em;
     padding: 1em;
     background-color: hotpink;
+    color: #fff;
+}
+
+header h1, form {
+    width: 50%;
+    margin: 0 auto;
+}
+
+form {
+    padding: 1em;
+}
+
+form input {
+    box-sizing: border-box;
+    width: 100%;
+    height: 4em;
+    padding: 0.5em;
+}
+
+form ul {
+    width: 100%;
+    margin-top: 2em;
+    list-style-type: none;
+    padding:0;
+}
+
+form li {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 3px 5px 0 rgba(0,0,0,0.2);
+    margin-bottom: 1em;
+    padding: 0.5em;
+    color: #666;
+    list-style: none;
+}
+
+#additem {
+    width: 100%;
+    height: 2em;
+    background-color: mediumseagreen;
+    color: #fff;
+    border: none;
+}
+
+#additem:hover {
+    background-color: indianred;
+}
+
+.close {
+    background-color: orangered;
+    color: #fff;
+    border: 0;
+    padding: 1em;
+    position: absolute;
+    right:0;
+    top:0;
+}
+
+.close:hover {
+    background-color: indianred;
 }

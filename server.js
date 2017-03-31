@@ -28,20 +28,25 @@ var listArray = [];
 
 function home(req, res) {
     res.render('index', {
+        error: 'voeg items toe!',
         listArray: listArray
     })
 }
 
 function addList(req, res) {
-    listArray.push(req.body.query);
+    console.log(req.body.query);
 
     if (req.body.query === '') {
         res.render('index', {
-            error: 'You must write something!'
-        })
-    } else {
-        res.render('index', {
+            error: 'Vul alstublieft iets in',
             listArray: listArray
-        });
+        })
+    } else if (req.body.query !== '') {
+        listArray.push(req.body.query);
+
+        res.render('index', {
+            error: 'nieuw item toegevoegd',
+            listArray: listArray
+        })
     }
 }
