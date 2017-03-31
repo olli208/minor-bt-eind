@@ -20,14 +20,14 @@ most browser on mobile Devices. Should work on Kindle althoug functionality is l
 
 ## Fallback
 Here are some of the problems I encoutenred:
-- problem #1 preventdefault doesnt work. 
+- problem #1 preventdefault doesnt work (on IE). 
 fix
 ```
  ecvent.returnValue = false;
  // for event.preventDefault
 ```
 - problem #2 forEach deos not work on IE. fix: no forEach loops, only normal for loops
-- problem #3 e.target.matches  is not supported. 
+- problem #3 e.target.matches is not supported (on IE). 
 fix: 
 ```
 e.target.msMatchesSelector 
