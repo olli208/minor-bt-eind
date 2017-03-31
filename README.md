@@ -10,16 +10,19 @@ Step 3 is making it work without JavaScript, using Serverside Scripting. When th
 In the future I want it to work offline either completely, or part of it and also make it more Google Keep like, where you can save a list and give it a name so you can acces it later.
 
 ## Browser Support
-problem #1 Fucking preventdefault doesnt work fix: e.returnValue = false;
-problem #2 forEach deos not wORK fix: no forEach loops, only normal for loops
-problem #3 e.target.matches fix: e.target.msMatchesSelector 
+The app works on old and new browsers. Older browser have limited functionality especially when javascript is limited or not supported. When i talk about old browsers I almost always mean IE < 9.
+
+Here are some of the problems I encoutenred:
+problem #1 preventdefault doesnt work. fix: e.returnValue = false;
+problem #2 forEach deos not work on IE. fix: no forEach loops, only normal for loops
+problem #3 e.target.matches  is not supported. fix: e.target.msMatchesSelector 
 problem #4 autofocus on textbox does not work.
-problem #5 querySelector does not work on ie 8 (i think)    
+problem #5 querySelector does not work on ie 8. 
 
 ![Internet Explorer 8](ie.png)
 
 ## Device Support
-asasa
+Mobile Devices 
 
 ## Fallback
 sasas
