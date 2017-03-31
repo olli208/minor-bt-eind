@@ -12,6 +12,12 @@ In the future I want it to work offline either completely, or part of it and als
 ## Browser Support
 The app works on old and new browsers. Older browser have limited functionality especially when javascript is limited or not supported. When i talk about old browsers I almost always mean IE < 9.
 
+![Internet Explorer 8](ie.png)
+
+## Device Support
+most browser on mobile Devices. Should work on Kindle althoug functionality is limited.
+
+## Fallback
 Here are some of the problems I encoutenred:
 - problem #1 preventdefault doesnt work. 
 fix
@@ -27,14 +33,6 @@ e.target.msMatchesSelector
 ```
 - problem #4 autofocus on textbox does not work.
 - problem #5 querySelector does not work on ie 8. 
-
-![Internet Explorer 8](ie.png)
-
-## Device Support
-Mobile Devices 
-
-## Fallback
-sasas
 
 ## Run app
 When you have [NODE](https://nodejs.org/en/) & [NPM](https://www.npmjs.com/) on your computer run the following command:
