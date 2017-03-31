@@ -60,6 +60,11 @@ form li, .error {
     list-style: none;
 }
 
+.error {
+    background-color: hotpink;
+    color: #fff;
+}
+
 #additem {
     width: 100%;
     height: 2em;
