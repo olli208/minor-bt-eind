@@ -16,6 +16,7 @@ The app works on old and new browsers. Older browser have limited functionality 
 
 ## Device Support
 most browser on mobile Devices. Should work on Kindle althoug functionality is limited.
+![android Chrome](images/mobile.jpg)
 
 ## Fallback
 Here are some of the problems I encoutenred:
