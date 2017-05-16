@@ -4,7 +4,6 @@ var path = require('path');
 
 var app = express();
 
-
 // View Engine
 app.set('view engine' , 'ejs' );
 app.set('views' , path.join(__dirname, 'views'));
@@ -20,13 +19,12 @@ app.listen(3000, function(){
     console.log('APP IS HERE: http://localhost:3000');
 });
 
+var listArray = [];
 
 // Routers/pages
 app.get('/', home);
 app.post('/add', addList);
 app.post('/remove', removeList);
-
-var listArray = [];
 
 function home(req, res) {
     res.render('index', {
@@ -49,23 +47,21 @@ function addList(req, res) {
             listArray: listArray
         })
     }
-    // console.log(listArray);
 }
 
 function removeList(req, res) {
-    removeA(listArray, 'kaas');
-    // listArray.splice(1, 1);
-    console.log(req.remove);
+    removeA(listArray, req.body.remove);
     res.render('index', {
         error: 'voeg items toe!',
         listArray: listArray
     });
 }
 
+// Remove array on the basis of a string instead of indexOf...
 // source http://stackoverflow.com/questions/3954438/remove-item-from-array-by-value
 function removeA(arr) {
     var what, a = arguments, L = a.length, ax;
-    while (L > 1 && arr.length) {
+    while (L > 0 && arr.length) {
         what = a[--L];
         while ((ax= arr.indexOf(what)) !== -1) {
             arr.splice(ax, 1);

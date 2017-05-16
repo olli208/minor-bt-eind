@@ -13,7 +13,8 @@
             <li>
                 <h2><%= listItem %></h2>
                 <form action="/remove" method="post">
-                   <button type="submit" class="close" name="remove">remove</button>
+                    <input type="hidden" value="<%= listItem %>" name="remove"/>
+                    <button type="submit" class="close">remove</button>
                 </form>
             </li>
             <% }) %>
