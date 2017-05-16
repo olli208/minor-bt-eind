@@ -19,10 +19,10 @@ function storage() {
 }
 
 function addEvent(evnt, elem, func) {
-    if (document.addEventListener) {// W3C DOM
+    if (document.addEventListener) {
         document.querySelector('form').addEventListener('submit', add);
         document.querySelector('ul').addEventListener('click', remove);
-    } else  { // IE DOM
+    } else  { // !!! IE fallback for addeventlistener
         document.querySelector('form').attachEvent('submit', add);
         document.querySelector('ul').attachEvent('click', remove);
     }
@@ -42,13 +42,14 @@ function remove(e) {
 
     matches = e.target.matches ? e.target.matches('BUTTON.close') : e.target.msMatchesSelector('BUTTON.close');
     if (matches) {
-        if (e.preventDefault) {
-            e.preventDefault();
-        } else {
-            e.returnValue = false;
-        }
+        // if (e.preventDefault) {
+        //     e.preventDefault();
+        // } else {
+        //     e.returnValue = false; // deprecated...
+        // }
         e.target.parentNode.parentNode.removeChild(e.target.parentNode);
 
+        // Alsoremove item from local storage
         var list = JSON.parse(localStorage.getItem("myList")) || {};
         var items = list || [];
         for (var x = 0; x < items.length; x++) {
@@ -59,6 +60,8 @@ function remove(e) {
             }
         }
         localStorage.setItem("myList", JSON.stringify(list));
+
+        e.preventDefault();
     }
 }
 
@@ -71,12 +74,6 @@ function children(e) {
 }
 
 function add(e) {
-    if (e.preventDefault) {
-        e.preventDefault();
-    } else {
-        e.returnValue = false;
-    }
-
     var query = document.querySelector('input').value;
     var node = document.createElement('li');
     node.className = "person";
@@ -89,14 +86,18 @@ function add(e) {
 
         var list = storage();
         list.push(query);
+        // Also ADD items to localstorage
         localStorage.setItem('myList', JSON.stringify(list));
     }
-    console.log(storage());
+    // console.log(storage());
 
     document.querySelector('input').value = "";
     appendXBtn(node);
+
+    e.preventDefault();
 }
 
+// Add close button to each list element
 function appendXBtn(e) {
     var button = document.createElement("BUTTON");
     var txt = document.createTextNode("\u00D7");

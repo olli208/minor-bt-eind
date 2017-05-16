@@ -8,11 +8,13 @@
         <input required="required" pattern="{1}" type="text" name="query" placeholder="Add Somethings" autofocus autocomplete='off'>
         <button id="additem">add item</button>
 
-        <ul id="taskList" name="mylist">
+        <ul id="taskList">
             <% listArray.forEach(function(listItem){ %>
             <li>
                 <h2><%= listItem %></h2>
-                <button type="button" class="close">remove</button>
+                <form action="/remove" method="post">
+                   <button type="submit" class="close">remove</button>
+                </form>
             </li>
             <% }) %>
         </ul>

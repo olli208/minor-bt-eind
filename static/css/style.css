@@ -7,13 +7,13 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Roboto Condensed', sans-serif;
-    background: lightsteelblue;
+    background: #e0e0e0;
 }
 
 header {
     height: 5em;
     padding: 1em;
-    background-color: hotpink;
+    background-color: dodgerblue;
     color: #fff;
 }
 
@@ -53,7 +53,7 @@ form li, .error {
     box-sizing: border-box;
     width: 100%;
     background-color: #fff;
-    box-shadow: 0 3px 5px 0 rgba(0,0,0,0.2);
+    /*box-shadow: 0 3px 5px 0 rgba(0,0,0,0.2);*/
     margin-bottom: 1em;
     padding: 0.5em;
     color: #666;
@@ -61,7 +61,7 @@ form li, .error {
 }
 
 .error {
-    background-color: hotpink;
+    background-color: indianred;
     color: #fff;
 }
 
@@ -74,7 +74,7 @@ form li, .error {
 }
 
 #additem:hover {
-    background-color: indianred;
+    background-color: darkgreen;
 }
 
 .close {
