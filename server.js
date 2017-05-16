@@ -53,9 +53,23 @@ function addList(req, res) {
 }
 
 function removeList(req, res) {
+    removeA(listArray, 'kaas');
+    // listArray.splice(1, 1);
+    console.log(req.remove);
     res.render('index', {
         error: 'voeg items toe!',
         listArray: listArray
     });
-    var index = listArray.indexOf(5);
+}
+
+// source http://stackoverflow.com/questions/3954438/remove-item-from-array-by-value
+function removeA(arr) {
+    var what, a = arguments, L = a.length, ax;
+    while (L > 1 && arr.length) {
+        what = a[--L];
+        while ((ax= arr.indexOf(what)) !== -1) {
+            arr.splice(ax, 1);
+        }
+    }
+    return arr;
 }
