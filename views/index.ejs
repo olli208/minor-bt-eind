@@ -12,10 +12,7 @@
             <% listArray.forEach(function(listItem){ %>
             <li>
                 <h2><%= listItem %></h2>
-                <form action="/remove" method="post">
-                    <input type="hidden" value="<%= listItem %>" name="remove"/>
-                    <button type="submit" class="close">remove</button>
-                </form>
+                <button class="close">remove</button>
             </li>
             <% }) %>
         </ul>

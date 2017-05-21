@@ -1,8 +1,11 @@
 var express = require('express');
+var app = express();
 var bodyParser = require('body-parser');
 var path = require('path');
 
-var app = express();
+
+var http = require('http').createServer(app);
+var io = require('socket.io').listen(http);
 
 // View Engine
 app.set('view engine' , 'ejs' );
@@ -15,16 +18,15 @@ app.use(express.static(path.join(__dirname, 'static')));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-app.listen(3000, function(){
+http.listen(3000, function(){
     console.log('APP IS HERE: http://localhost:3000');
 });
-
-var listArray = [];
 
 // Routers/pages
 app.get('/', home);
 app.post('/add', addList);
-app.post('/remove', removeList);
+
+var listArray = [];
 
 function home(req, res) {
     res.render('index', {
@@ -34,38 +36,46 @@ function home(req, res) {
 }
 
 function addList(req, res) {
-    // console.log(req.body.query);
-    if (req.body.query === '') {
-        res.render('index', {
-            error: 'Vul alstublieft iets in',
-            listArray: listArray
-        })
-    } else  {
-        listArray.push(req.body.query);
-        res.render('index', {
-            error: 'nieuw item toegevoegd',
-            listArray: listArray
-        })
-    }
-}
+  if (listArray[0] === undefined || req.body.query !== listArray[listArray.length - 1]) {
+      listArray.push(req.body.query)
+  }
 
-function removeList(req, res) {
-    removeA(listArray, req.body.remove);
+  if (req.body.query) {
     res.render('index', {
-        error: 'voeg items toe!',
-        listArray: listArray
-    });
+      error: 'nieuw item toegevoegd',
+      listArray: listArray
+    })
+  } else if (req.body.query === '') {
+    res.render('index', {
+      error: 'Vul alstublieft iets in',
+      listArray: listArray
+    })
+  }
 }
 
-// Remove array on the basis of a string instead of indexOf...
+// Remove item in array on the basis of a string instead of indexOf...
 // source http://stackoverflow.com/questions/3954438/remove-item-from-array-by-value
 function removeA(arr) {
-    var what, a = arguments, L = a.length, ax;
-    while (L > 0 && arr.length) {
-        what = a[--L];
-        while ((ax= arr.indexOf(what)) !== -1) {
-            arr.splice(ax, 1);
-        }
+  var what, a = arguments, L = a.length, ax;
+  while (L > 0 && arr.length) {
+    what = a[--L];
+    while ((ax= arr.indexOf(what)) !== -1) {
+      arr.splice(ax, 1);
     }
-    return arr;
+  }
+  return arr;
 }
+
+// Sockets Here
+io.sockets.on('connection', function (socket) {
+    console.log(socket.id)
+      socket.on('remove', function (data){
+        removeA(listArray, data);
+        console.log('update list' , listArray);
+      });
+
+      socket.on('new item', function (data){
+        listArray.push(data)
+        console.log('list from socket' , listArray);
+      });
+});
