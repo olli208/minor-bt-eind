@@ -27,12 +27,16 @@ app.get('/', home);
 app.post('/add', addList);
 
 var listArray = [];
+var socketArray = []
 
 function home(req, res) {
-    res.render('index', {
-        error: 'voeg items toe!',
-        listArray: listArray
-    })
+  console.log(listArray)
+  console.log(socketArray)
+  res.render('index');
+  res.render('index', {
+    error: "Hello there, It seems that you turned Javascript off. You'll be unable to remove items",
+    listArray: listArray
+  })
 }
 
 function addList(req, res) {
@@ -68,7 +72,6 @@ function removeA(arr) {
 
 // Sockets Here
 io.sockets.on('connection', function (socket) {
-    console.log(socket.id)
       socket.on('remove', function (data){
         removeA(listArray, data);
         console.log('update list' , listArray);

@@ -4,25 +4,28 @@
 
 // - Save list as Onject(Like toast, or shopping list for a party)
 // - Receive saved lists from somewhere (chaching shit)
-// - Add more stuff to a list???(picture with every new item
-// - saved lists can be seen in a pop up window when clicked it show the clicked list in the main screen
-// - Autosuggest API maybe??
+// - Add more stuff to a list?(picture with every new item
+
 var socket = io();
 
+document.querySelector('.error').style.display = 'none';
+
 function storage() {
-  var list = [];
+  var listLocal = [];
   var listStorage = localStorage.getItem('myList');
-  if (listStorage != null) {
-    list = JSON.parse(listStorage);
+  if (listStorage !== null) {
+    listLocal = JSON.parse(listStorage);
+    console.log(listLocal)
   }
-  return list;
+  return listLocal;
 }
 
-function addEvent(evnt, elem, func) {
+function addEvent() {
   if (document.addEventListener) {
     document.querySelector('form').addEventListener('submit', add);
     document.querySelector('ul').addEventListener('click', remove);
-  } else  { // !!! IE fallback for addeventlistener
+  } else  {
+    // !!! IE fallback for addeventlistener
     document.querySelector('form').attachEvent('submit', add);
     document.querySelector('ul').attachEvent('click', remove);
   }
@@ -31,8 +34,8 @@ function addEvent(evnt, elem, func) {
 addEvent();
 show();
 
+//  Event event delegation to remove dynamically created list(thanks Krijn!)
 function remove(e) {
-  // e.target is the clicked element!
   // Below searches for index of child node
   var tgt = e.target, i = 0, items;
   if (tgt === this) return;
@@ -42,32 +45,27 @@ function remove(e) {
 
   matches = e.target.matches ? e.target.matches('BUTTON.close') : e.target.msMatchesSelector('BUTTON.close');
   if (matches) {
-    // if (e.preventDefault) {
-    //     e.preventDefault();
-    // } else {
-    //     e.returnValue = false; // deprecated...
-    // }
+    //  remove from the dom
+    e.target.parentNode.parentNode.removeChild(e.target.parentNode);
 
-    //  remove listitem from server also
+    // remove element from server
     var textofElement = e.target.parentNode.firstElementChild.innerHTML;
     console.log(textofElement);
     socket.emit('remove' , textofElement)
 
-    e.target.parentNode.parentNode.removeChild(e.target.parentNode);
-
-    // Alsoremove item from local storage
+    // At last remove item from local storage also
     var list = JSON.parse(localStorage.getItem("myList")) || {};
-    var items = list || [];
+    items = list || [];
     for (var x = 0; x < items.length; x++) {
       if (items[x]) {
-        // The i is index of child node that we got earlier
         items.splice(i, 1);
         break;
       }
     }
-    localStorage.setItem("myList", JSON.stringify(list));
 
-    e.preventDefault();
+    //  set updated list to localstorage
+    localStorage.setItem("myList", JSON.stringify(list));
+    event.preventDefault ? event.preventDefault() : (event.returnValue = false); // internet explorer (8) fallback
   }
 }
 
@@ -81,14 +79,16 @@ function children(e) {
 
 function add(e) {
   var query = document.querySelector('input').value;
-  var node = document.createElement('li');
-  node.innerHTML = '<h2>' + query + '</h2>';
+  var listItem = document.createElement('li');
+  listItem.innerHTML = '<h2>' + query + '</h2>';
 
   if (query === '') {
+    // Alert user when HTML from doenst validate
     alert("You must write something!");
   } else {
-    document.querySelector("ul").appendChild(node);
+    document.querySelector("ul").appendChild(listItem);
 
+    // Add items from local storage
     var list = storage();
     list.push(query);
 
@@ -103,7 +103,8 @@ function add(e) {
   document.querySelector('input').value = "";
   appendXBtn(node);
 
-  e.preventDefault();
+  event.preventDefault ? event.preventDefault() : (event.returnValue = false); // internet explorer (8) fallback
+
 }
 
 // Add close button to each list element
