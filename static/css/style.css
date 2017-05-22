@@ -90,3 +90,36 @@ form li, .error {
 .close:hover {
     background-color: indianred;
 }
+
+.btn {
+    padding: 0.5em 1em;
+    margin: 0.5em 0;
+    background: #666;
+    color: #fff;
+    border: 0;
+    border-radius: 500px;
+    letter-spacing: 1px;
+}
+
+button:hover {
+    background: #3f3f3f;
+    color: #fff;
+}
+
+.savedlists ul {
+    background: #e8e8e8;
+    padding: 1em;
+    margin: 1em;
+}
+
+.savedlists ul li {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    background-color: #fff;
+    /*box-shadow: 0 3px 5px 0 rgba(0,0,0,0.2);*/
+    margin-bottom: 1em;
+    padding: 0.5em;
+    color: #666;
+    list-style: none;
+}

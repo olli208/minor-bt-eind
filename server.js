@@ -3,7 +3,6 @@ var app = express();
 var bodyParser = require('body-parser');
 var path = require('path');
 
-
 var http = require('http').createServer(app);
 var io = require('socket.io').listen(http);
 
@@ -24,50 +23,22 @@ http.listen(3000, function(){
 
 // Routers/pages
 app.get('/', home);
-app.post('/add', addList);
+app.get('/saved', saved);
 
 var listArray = [];
-var socketArray = []
+var savedLists = [];
 
 function home(req, res) {
   console.log(listArray)
-  console.log(socketArray)
-  res.render('index');
   res.render('index', {
-    error: "Hello there, It seems that you turned Javascript off. You'll be unable to remove items",
-    listArray: listArray
+    error: "Hello there, It seems that you turned JavaScript off. You'll be unable to add items to your list. Turn it on, you savage!"
   })
 }
 
-function addList(req, res) {
-  if (listArray[0] === undefined || req.body.query !== listArray[listArray.length - 1]) {
-      listArray.push(req.body.query)
-  }
-
-  if (req.body.query) {
-    res.render('index', {
-      error: 'nieuw item toegevoegd',
-      listArray: listArray
-    })
-  } else if (req.body.query === '') {
-    res.render('index', {
-      error: 'Vul alstublieft iets in',
-      listArray: listArray
-    })
-  }
-}
-
-// Remove item in array on the basis of a string instead of indexOf...
-// source http://stackoverflow.com/questions/3954438/remove-item-from-array-by-value
-function removeA(arr) {
-  var what, a = arguments, L = a.length, ax;
-  while (L > 0 && arr.length) {
-    what = a[--L];
-    while ((ax= arr.indexOf(what)) !== -1) {
-      arr.splice(ax, 1);
-    }
-  }
-  return arr;
+function saved(req, res) {
+  res.render('savedlists' , {
+    lists: savedLists
+  })
 }
 
 // Sockets Here
@@ -81,4 +52,24 @@ io.sockets.on('connection', function (socket) {
         listArray.push(data)
         console.log('list from socket' , listArray);
       });
+
+      socket.on('save list' , function(){
+        savedLists.push(listArray)
+        listArray = []
+        console.log('list' , listArray)
+        console.log('saved lists' , savedLists)
+      })
 });
+
+// Remove item in array on the basis of a string instead of indexOf...
+// source http://stackoverflow.com/questions/3954438/remove-item-from-array-by-value
+function removeA(arr) {
+  var what, a = arguments, L = a.length, ax;
+  while (L > 0 && arr.length) {
+    what = a[--L];
+    while ((ax= arr.indexOf(what)) !== -1) {
+      arr.splice(ax, 1);
+    }
+  }
+  return arr;
+}

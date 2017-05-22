@@ -5,34 +5,37 @@
 // - Save list as Onject(Like toast, or shopping list for a party)
 // - Receive saved lists from somewhere (chaching shit)
 // - Add more stuff to a list?(picture with every new item
+// - keep track of the list server side and only show it when localStorage fails/ detect that there is no javascript
 
 var socket = io();
 
 document.querySelector('.error').style.display = 'none';
+
+addEvent();
 
 function storage() {
   var listLocal = [];
   var listStorage = localStorage.getItem('myList');
   if (listStorage !== null) {
     listLocal = JSON.parse(listStorage);
-    console.log(listLocal)
   }
   return listLocal;
 }
 
 function addEvent() {
-  if (document.addEventListener) {
-    document.querySelector('form').addEventListener('submit', add);
-    document.querySelector('ul').addEventListener('click', remove);
-  } else  {
-    // !!! IE fallback for addeventlistener
-    document.querySelector('form').attachEvent('submit', add);
-    document.querySelector('ul').attachEvent('click', remove);
-  }
+    if (document.addEventListener) {
+      document.querySelector('form').addEventListener('submit', add);
+      document.querySelector('ul').addEventListener('click', remove);
+      document.querySelector('.saveList').addEventListener('click', saveList);
+      document.querySelector('.loadloaclstorage').addEventListener('click', show);
+    } else  {
+      // !!! IE fallback for addeventlistener
+      document.querySelector('form').attachEvent('submit', add);
+      document.querySelector('ul').attachEvent('click', remove);
+      document.querySelector('.saveList').attachEvent('click', saveList);
+      document.querySelector('.loadloaclstorage').attachEvent('click', show);
+    }
 }
-
-addEvent();
-show();
 
 //  Event event delegation to remove dynamically created list(thanks Krijn!)
 function remove(e) {
@@ -43,7 +46,7 @@ function remove(e) {
   while (tgt.parentNode !== this) tgt = tgt.parentNode;
   while (items[i] !== tgt) i++;
 
-  matches = e.target.matches ? e.target.matches('BUTTON.close') : e.target.msMatchesSelector('BUTTON.close');
+  matches = e.target.matches ? e.target.matches('BUTTON.close') : e.target.msMatchesSelector('BUTTON.close'); //  feature detection for older browsers
   if (matches) {
     //  remove from the dom
     e.target.parentNode.parentNode.removeChild(e.target.parentNode);
@@ -78,8 +81,12 @@ function children(e) {
 }
 
 function add(e) {
+  event.preventDefault ? event.preventDefault() : (event.returnValue = false); // internet explorer (8) fallback
+
+  var list = [];
   var query = document.querySelector('input').value;
   var listItem = document.createElement('li');
+  listItem.className = 'liClient';
   listItem.innerHTML = '<h2>' + query + '</h2>';
 
   if (query === '') {
@@ -89,41 +96,44 @@ function add(e) {
     document.querySelector("ul").appendChild(listItem);
 
     // Add items from local storage
-    var list = storage();
+    var localstorageList = storage();
     list.push(query);
+    localstorageList.push(query)
 
     //  Send query to server with socket
     socket.emit('new item' , query)
 
     // Also ADD items to localstorage
-    localStorage.setItem('myList', JSON.stringify(list));
+    localStorage.setItem('myList', JSON.stringify(localstorageList));
+
+    document.querySelector('input').value = "";
+    appendXBtn(listItem);
   }
-  // console.log(storage());
+}
 
-  document.querySelector('input').value = "";
-  appendXBtn(node);
+//  Show items from loaclstorage
+function show() {
+  var list = storage();
 
-  event.preventDefault ? event.preventDefault() : (event.returnValue = false); // internet explorer (8) fallback
+  for(var i = 0; i < list.length; i++) {
+    var listItem = document.createElement('li');
+    listItem.innerHTML = '<h2>' + list[i] + '</h2>';
 
+    document.querySelector("ul").appendChild(listItem);
+    appendXBtn(listItem);
+  }
+}
+
+function saveList() {
+  document.querySelector("ul").innerHTML = ''
+  socket.emit('save list')
 }
 
 // Add close button to each list element
 function appendXBtn(e) {
   var button = document.createElement("BUTTON");
-  var txt = document.createTextNode("\u00D7");
+  var x = document.createTextNode("\u00D7");
   button.className = "close";
-  button.appendChild(txt);
+  button.appendChild(x);
   e.appendChild(button);
-}
-
-function show() {
-  var list = storage();
-
-  for(var i = 0; i < list.length; i++) {
-    var node = document.createElement('li');
-    node.innerHTML = '<h2>' + list[i] + '</h2>';
-
-    document.querySelector("ul").appendChild(node);
-    appendXBtn(node);
-  }
 }
