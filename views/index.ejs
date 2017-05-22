@@ -1,7 +1,10 @@
 <% include partials/head.ejs %>
     <header>
-        <h1>To-do List</h1>
-        <a class="" href="/saved"><button>SAVED LISTS</button></a>
+        <nav>
+            <h1>To-do List</h1>
+            <a class="" href="/saved">SAVED LISTS</a>
+        </nav>
+
     </header>
     <form>
         <p class="error"><%= error %></p>
@@ -12,9 +15,11 @@
 
         </ul>
 
+    </form>
+
+    <div class="saveBtn">
         <button class="btn saveList">Save list to a magic place</button>
         <button class="btn loadloaclstorage">load from localstorage!</button>
-
-    </form>
+    </div>
 
 <% include partials/footer.ejs %>

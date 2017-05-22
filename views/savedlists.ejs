@@ -1,14 +1,15 @@
 <% include partials/head.ejs %>
 <header>
-    <h1>To-do List</h1>
-    <h2>saved lists</h2>
-
+    <nav>
+        <h1>To-do List</h1>
+        <h2>saved lists</h2>
+    </nav>
 </header>
 <section>
     <div class="savedlists">
         <% lists.forEach(function(list){ %>
         <ul>
-            <h2>List</h2>
+            <h3>List</h3>
             <% list.forEach(function(items) {%>
                 <li><%= items %></li>
             <% }) %>

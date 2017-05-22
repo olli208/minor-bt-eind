@@ -11,20 +11,26 @@ body {
 }
 
 header {
-    height: 5em;
-    padding: 1em;
+    height: auto;
+    padding: 0.25em;
     background-color: dodgerblue;
     color: #fff;
+    box-shadow: 0 3px 5px 0 rgba(0,0,0,0.1);
 }
 
-header h1, form {
+nav, form , .savedlists , .saveBtn  {
     box-sizing: border-box;
     width: 100%;
     margin: 0 auto;
 }
 
+nav a {
+    /*text-decoration: none;*/
+    color: #fff;
+}
+
 @media screen and (min-width: 60em){
-    header h1, form {
+   nav , form, .savedlists , .saveBtn {
         width: 50%;
         margin: 0 auto;
     }
@@ -110,6 +116,8 @@ button:hover {
     background: #e8e8e8;
     padding: 1em;
     margin: 1em;
+    box-shadow: 0 3px 5px 0 rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.1);
 }
 
 .savedlists ul li {
