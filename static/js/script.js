@@ -68,7 +68,6 @@ function remove(e) {
 
     //  set updated list to localstorage
     localStorage.setItem("myList", JSON.stringify(list));
-    event.preventDefault ? event.preventDefault() : (event.returnValue = false); // internet explorer (8) fallback
   }
 }
 
@@ -80,9 +79,7 @@ function children(e) {
   return children;
 }
 
-function add(e) {
-  event.preventDefault ? event.preventDefault() : (event.returnValue = false); // internet explorer (8) fallback
-
+function add(event) {
   var list = [];
   var query = document.querySelector('input').value;
   var listItem = document.createElement('li');
@@ -109,6 +106,7 @@ function add(e) {
     document.querySelector('input').value = "";
     appendXBtn(listItem);
   }
+  (event.preventDefault) ? event.preventDefault() : event.returnValue = false; // internet explorer (8) fallback
 }
 
 //  Show items from loaclstorage

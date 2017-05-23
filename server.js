@@ -24,12 +24,12 @@ http.listen(3000, function(){
 // Routers/pages
 app.get('/', home);
 app.get('/saved', saved);
+app.post('/remove', removeLists);
 
 var listArray = [];
 var savedLists = [];
 
 function home(req, res) {
-  console.log(listArray)
   res.render('index', {
     error: "Hello there, It seems that you turned JavaScript off. You'll be unable to add items to your list. Turn it on, you savage!"
   })
@@ -39,6 +39,10 @@ function saved(req, res) {
   res.render('savedlists' , {
     lists: savedLists
   })
+}
+
+function removeLists(){
+  savedLists = [];
 }
 
 // Sockets Here
