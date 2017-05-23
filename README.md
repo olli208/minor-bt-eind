@@ -25,7 +25,7 @@ From Internet Explorer 9 onwards it works as intended
 most browser on mobile Devices. Should work on Kindle although functionality is limited for obvious reasons.
 
 On mobile:
-![android Chrome](images/mobile.jpg)
+![android Chrome](images/mobile.png)
 
 ## Fallback
 Here are some of the problems I encoutenred:
