@@ -9,7 +9,10 @@
 
 var socket = io();
 
-document.querySelector('.error').style.display = 'none';
+if(addEventListener) {
+  document.querySelector('.error').style.display = 'none';
+}
+
 
 function storage() {
   var listLocal = [];

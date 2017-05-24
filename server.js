@@ -31,7 +31,7 @@ var savedLists = [];
 
 function home(req, res) {
   res.render('index', {
-    error: "Hello there, It seems that you turned JavaScript off. You'll be unable to add items to your list. Turn it on, you savage!"
+    error: "Hello there, It seems that you turned JavaScript off or your browser is old. You'll be unable to add items to your list. Turn it on or use a better browser, you savage!"
   })
 }
 
