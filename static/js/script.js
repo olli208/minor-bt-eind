@@ -11,8 +11,6 @@ var socket = io();
 
 document.querySelector('.error').style.display = 'none';
 
-addEvent();
-
 function storage() {
   var listLocal = [];
   var listStorage = localStorage.getItem('myList');
@@ -22,20 +20,19 @@ function storage() {
   return listLocal;
 }
 
-function addEvent() {
-    if (document.addEventListener) {
+if (document.addEventListener) {
       document.querySelector('form').addEventListener('submit', add);
       document.querySelector('ul').addEventListener('click', remove);
       document.querySelector('.saveList').addEventListener('click', saveList);
       document.querySelector('.loadloaclstorage').addEventListener('click', show);
-    } else  {
-      // !!! IE fallback for addeventlistener
+} else  {
+      // !!! IE < 8 fallback for addeventlistener but queryselector doenst work so this is useless...
       document.querySelector('form').attachEvent('submit', add);
       document.querySelector('ul').attachEvent('click', remove);
       document.querySelector('.saveList').attachEvent('click', saveList);
       document.querySelector('.loadloaclstorage').attachEvent('click', show);
-    }
 }
+
 
 //  Event event delegation to remove dynamically created list(thanks Krijn!)
 function remove(e) {
@@ -106,7 +103,8 @@ function add(event) {
     document.querySelector('input').value = "";
     appendXBtn(listItem);
   }
-  (event.preventDefault) ? event.preventDefault() : event.returnValue = false; // internet explorer (8) fallback
+
+  (event.preventDefault) ? event.preventDefault() : event.returnValue = false; // internet explorer (9) fallback
 }
 
 //  Show items from loaclstorage
