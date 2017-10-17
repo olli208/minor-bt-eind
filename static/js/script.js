@@ -2,137 +2,85 @@
 // TO DO LIST / Wishlist
 // ========================================================
 
-// - Save list as Onject(Like toast, or shopping list for a party)
-// - Receive saved lists from somewhere (chaching shit)
-// - Add more stuff to a list?(picture with every new item
-// - keep track of the list server side and only show it when localStorage fails/ detect that there is no javascript
+document.querySelectorAll('.nav').forEach(function(ev) {
+  ev.addEventListener('click', function(el) {
+      smoothScroll(this, 15);
+      // el.preventDefault();
+  })
+});
 
-var socket = io();
+function smoothScroll(toElement, speed) {
+  var pointer = toElement.getAttribute('href').slice(1);
+  var elem = document.getElementById(pointer);
+  var elemOffset = elem.offsetTop; // returns the distance of the current element relative to the top of the offsetParent node
 
-if(addEventListener) {
-  document.querySelector('.error').style.display = 'none';
+  // console.log(event.target.getAttribute('href').slice(1)) // Works also need testing in IE
+
+  var counter = setInterval(function() {
+    //  returns the number of pixels that the document is currently scrolled vertically
+    window.pageYOffset;
+
+    if (window.pageYOffset > elemOffset) { // from bottom to top
+        window.scrollTo(0, window.pageYOffset);
+        window.pageYOffset -= speed;
+
+        if (window.pageYOffset <= elemOffset) { // scrolling until elemOffset is higher than scrollbar position, cancel interval and set scrollbar to element position
+            clearInterval(counter);
+            window.scrollTo(0, elemOffset);
+        }
+    } else { // from top to bottom
+        window.scrollTo(0, window.pageYOffset);
+        window.pageYOffset += speed;
+
+        if (window.pageYOffset >= elemOffset) { // scroll until scrollbar is lower than element, cancel interval and set scrollbar to element position
+            clearInterval(counter);
+            window.scrollTo(0, elemOffset);
+        }
+    }
+  }, 1);
 }
 
+function autocomplete() {
+  var people = []
+  var word = []
+  var contactList = document.querySelector('main');
+  var searchBox = document.querySelector('input[type=search]')
+  searchBox.addEventListener('input' , function(ev) {   
+    var letter = word.push(ev.data);
 
-function storage() {
-  var listLocal = [];
-  var listStorage = localStorage.getItem('myList');
-  if (listStorage !== null) {
-    listLocal = JSON.parse(listStorage);
-  }
-  return listLocal;
-}
-
-if (document.addEventListener) {
-      document.querySelector('form').addEventListener('submit', add);
-      document.querySelector('ul').addEventListener('click', remove);
-      document.querySelector('.saveList').addEventListener('click', saveList);
-      document.querySelector('.loadloaclstorage').addEventListener('click', show);
-} else  {
-      // !!! IE < 8 fallback for addeventlistener but queryselector doenst work so this is useless...
-      document.querySelector('form').attachEvent('submit', add);
-      document.querySelector('ul').attachEvent('click', remove);
-      document.querySelector('.saveList').attachEvent('click', saveList);
-      document.querySelector('.loadloaclstorage').attachEvent('click', show);
-}
-
-
-//  Event event delegation to remove dynamically created list(thanks Krijn!)
-function remove(e) {
-  // Below searches for index of child node
-  var tgt = e.target, i = 0, items;
-  if (tgt === this) return;
-  items = children(this);
-  while (tgt.parentNode !== this) tgt = tgt.parentNode;
-  while (items[i] !== tgt) i++;
-
-  matches = e.target.matches ? e.target.matches('BUTTON.close') : e.target.msMatchesSelector('BUTTON.close'); //  feature detection for older browsers
-  if (matches) {
-    //  remove from the dom
-    e.target.parentNode.parentNode.removeChild(e.target.parentNode);
-
-    // remove element from server
-    var textofElement = e.target.parentNode.firstElementChild.innerHTML;
-    console.log(textofElement);
-    socket.emit('remove' , textofElement)
-
-    // At last remove item from local storage also
-    var list = JSON.parse(localStorage.getItem("myList")) || {};
-    items = list || [];
-    for (var x = 0; x < items.length; x++) {
-      if (items[x]) {
-        items.splice(i, 1);
-        break;
-      }
+    if (ev.data === null) {
+      word.splice(word.length-2 , 2)
     }
 
-    //  set updated list to localstorage
-    localStorage.setItem("myList", JSON.stringify(list));
-  }
+    console.log(word.join('')); 
+
+    contactList.querySelectorAll('section').forEach(function (el) {
+      el.childNodes[3].querySelectorAll('li').forEach(function (el) {
+        people.push(el.innerHTML)
+      })
+    })
+  })
+
+  // // collect all names n an array
+  // contactList.querySelectorAll('section').forEach(function (el) {
+  //   el.childNodes[3].querySelectorAll('li').forEach(function (el) {
+  //     people.push(el.innerHTML)
+  //   })
+  // })
+
 }
 
-function children(e) {
-  var i = 0, children = [], child;
-  while (child = e.childNodes[i++]) {
-    if (child.nodeType === 1) children.push(child);
-  }
-  return children;
-}
+autocomplete();
 
-function add(event) {
-  var list = [];
-  var query = document.querySelector('input').value;
-  var listItem = document.createElement('li');
-  listItem.className = 'liClient';
-  listItem.innerHTML = '<h2>' + query + '</h2>';
-
-  if (query === '') {
-    // Alert user when HTML from doenst validate
-    alert("You must write something!");
-  } else {
-    document.querySelector("ul").appendChild(listItem);
-
-    // Add items from local storage
-    var localstorageList = storage();
-    list.push(query);
-    localstorageList.push(query)
-
-    //  Send query to server with socket
-    socket.emit('new item' , query)
-
-    // Also ADD items to localstorage
-    localStorage.setItem('myList', JSON.stringify(localstorageList));
-
-    document.querySelector('input').value = "";
-    appendXBtn(listItem);
-  }
-
-  (event.preventDefault) ? event.preventDefault() : event.returnValue = false; // internet explorer (9) fallback
-}
-
-//  Show items from loaclstorage
-function show() {
-  var list = storage();
-
-  for(var i = 0; i < list.length; i++) {
-    var listItem = document.createElement('li');
-    listItem.innerHTML = '<h2>' + list[i] + '</h2>';
-
-    document.querySelector("ul").appendChild(listItem);
-    appendXBtn(listItem);
-  }
-}
-
-function saveList() {
-  document.querySelector("ul").innerHTML = ''
-  socket.emit('save list')
-}
-
-// Add close button to each list element
-function appendXBtn(e) {
-  var button = document.createElement("BUTTON");
-  var x = document.createTextNode("\u00D7");
-  button.className = "close";
-  button.appendChild(x);
-  e.appendChild(button);
-}
+// if (document.addEventListener) {
+//       document.querySelector('form').addEventListener('submit', add);
+//       document.querySelector('ul').addEventListener('click', remove);
+//       document.querySelector('.saveList').addEventListener('click', saveList);
+//       document.querySelector('.loadloaclstorage').addEventListener('click', show);
+// } else  {
+//       // !!! IE < 8 fallback for addeventlistener but queryselector doenst work so this is useless...
+//       document.querySelector('form').attachEvent('submit', add);
+//       document.querySelector('ul').attachEvent('click', remove);
+//       document.querySelector('.saveList').attachEvent('click', saveList);
+//       document.querySelector('.loadloaclstorage').attachEvent('click', show);
+// }

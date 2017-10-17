@@ -25,13 +25,14 @@ http.listen(3000, function(){
 app.get('/', home);
 app.get('/saved', saved);
 app.post('/remove', removeLists);
+app.post('/result', search);
 
 var listArray = [];
 var savedLists = [];
 
 function home(req, res) {
   res.render('index', {
-    error: "Hello there, It seems that you turned JavaScript off or your browser is old. You'll be unable to add items to your list. Turn it on or use a better browser, you savage!"
+    // error: "Hello there, It seems that you turned JavaScript off or your browser is old. You'll be unable to add items to your list. Turn it on or use a better browser, you savage!"
   })
 }
 
@@ -41,9 +42,14 @@ function saved(req, res) {
   })
 }
 
+function search(req, res) {
+  console.log(req.body.query)
+}
+
 function removeLists(){
   savedLists = [];
 }
+
 
 // Sockets Here
 io.sockets.on('connection', function (socket) {

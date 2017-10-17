@@ -1,25 +1,272 @@
-<% include partials/head.ejs %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"  content="width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Contactlist</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
     <header>
+        <h1>Contacts</h1>
+        <form>
+            <input type="search" placeholder="seach contacts" autocomplete="false">
+            <button id="searchBtn">search</button>
+
+            <ul class="autofill"></ul>
+        </form>
         <nav>
-            <h1>To-do List</h1>
-            <a class="" href="/saved">SAVED LISTS</a>
+            <ul>
+                <li><a href="#letter-a" class="nav" id="nav-a">a</a></li>
+                <li><a href="#letter-b" class="nav" id="nav-b">b</a></li>
+                <li><a href="#letter-c" class="nav" id="nav-c">c</a></li>
+                <li><a href="#letter-d" class="nav" id="nav-d">d</a></li>
+                <li><a href="#letter-e" class="nav" id="nav-e">e</a></li>
+                <li><a href="#letter-f" class="nav" id="nav-f">f</a></li>
+                <li><a href="#letter-g" class="nav" id="nav-g">g</a></li>
+                <li><a href="#letter-h" class="nav" id="nav-h">h</a></li>
+                <li><a href="#letter-i" class="nav" id="nav-i">i</a></li>
+                <li><a href="#letter-j" class="nav" id="nav-j">j</a></li>
+                <li><a href="#letter-k" class="nav" id="nav-k">k</a></li>
+                <li><a href="#letter-l" class="nav" id="nav-l">l</a></li>
+                <li><a href="#letter-m" class="nav" id="nav-m">m</a></li>
+                <li><a href="#letter-n" class="nav" id="nav-n">n</a></li>
+                <li><a href="#letter-o" class="nav" id="nav-o">o</a></li>
+                <li><a href="#letter-p" class="nav" id="nav-p">p</a></li>
+                <li><a href="#letter-q" class="nav" id="nav-q">q</a></li>
+                <li><a href="#letter-r" class="nav" id="nav-r">r</a></li>
+                <li><a href="#letter-s" class="nav" id="nav-s">s</a></li>
+                <li><a href="#letter-t" class="nav" id="nav-t">t</a></li>
+                <li><a href="#letter-u" class="nav" id="nav-u">u</a></li>
+                <li><a href="#letter-v" class="nav" id="nav-v">v</a></li>
+                <li><a href="#letter-w" class="nav" id="nav-w">w</a></li>
+                <li><a href="#letter-x" class="nav" id="nav-x">x</a></li>
+                <li><a href="#letter-y" class="nav" id="nav-y">y</a></li>
+                <li><a href="#letter-z" class="nav" id="nav-z">z</a></li>
+            </ul>
         </nav>
-
     </header>
-    <form>
-        <p class="error"><%= error %></p>
-        <input  required="required" pattern="{1}" type="text" name="query" placeholder="Add Somethings" autofocus autocomplete='off'>
-        <button id="additem">add item</button>
-    </form>
 
+        <main>
+            <section id="letter-a">
+                <h2>a</h2>
+                <ul>
+                    <li>Alfonzo Schmitmeyer</li>
+                    <li>Annelle Ledger</li>
+                    <li>Ardis Newcombe</li>
+                </ul>
+            </section>
 
-    <ul class="userList">
+            <section id="letter-b">
+                <h2>b</h2>
+                <ul>
+                    <li>Billy Deshotel</li>
+                    <li>Buffy Azure</li>
+                </ul>
+            </section>
 
-    </ul>
+            <section id="letter-c">
+                <h2>c</h2>
+                <ul>
+                    <li>Cecile Umberger</li>
+                    <li>Chase Montilla</li>
+                    <li>Classie Baxter</li>
+                </ul>
+            </section>
 
-    <div class="saveBtn">
-        <button class="btn saveList">Save list to a magic place</button>
-        <button class="btn loadloaclstorage">load from localstorage!</button>
-    </div>
+            <section id="letter-d">
+                <h2>d</h2>
+                <ul>
+                    <li>David Correll</li>
+                    <li>Delora Kerrigan</li>
+                    <li>Donette Yahn</li>
+                </ul>
+            </section>
 
-<% include partials/footer.ejs %>
+            <section id="letter-e">
+                <h2>e</h2>
+                <ul>
+                    <li>Emelina Balogh</li>
+                    </ul>
+            </section>
+
+            <section id="letter-f">
+                <h2>f</h2>
+                <ul>
+                    <li>Francis Underwood</li>
+                    </ul>
+            </section>
+
+            <section id="letter-g">
+                <h2>g</h2>
+                <ul>
+                    <li>Gaye Saravia</li>
+                    <li>Geoffrey Epperson</li>
+                    <li>Glenda Neira</li>  
+                </ul>
+            </section>
+
+            <section id="letter-h">
+                <h2>h</h2>
+                <ul>
+                    <li>Helen Lala</li>
+                    </ul>
+            </section>
+
+            <section id="letter-i">
+                <h2>i</h2>
+                <ul>
+                    <li>Ileen Hermosillo</li>
+                    <li>Imogene Cresswell</li>
+                    </ul>
+            </section>
+
+            <section id="letter-j">
+                <h2>j</h2>
+                <ul>
+                    <li>Jasmine Beier</li>
+                    <li>Justine Varan</li>
+                </ul>
+            </section>
+
+            <section id="letter-k">
+                <h2>k</h2>
+                <ul>
+                    <li>Karolyn Kyer  </li>
+                    <li>Katrina Grigsby  </li>
+                    <li>Kenda Felter  </li>
+                    <li>Kiana Madewell  </li>
+                    </ul>
+            </section>
+
+            <section id="letter-l">
+                <h2>l</h2>
+                <ul>
+                    <li>Lakenya Commodore  </li>
+                    <li>Laurie Severns</li>
+                    <li>Lazaro Lagace </li>
+                    <li>Lola Woodbridge</li>
+                    <li>Lorraine Preas</li>
+                    <li>Luther Trimmer </li>
+                </ul>
+            </section>
+
+            <section id="letter-m">
+                <h2>m</h2>
+                <ul>
+                    <li>Marc Olmsted </li>
+                    <li>Mariana Jellison </li>
+                    <li>Maryann Stemm </li>
+                </ul>
+            </section>
+
+            <section id="letter-n">
+                <h2>n</h2>
+                <ul>
+                    <li>Nick Olmsted</li>
+                </ul>
+            </section>
+
+            <section id="letter-o">
+                <h2>o</h2>
+                <ul>
+                    <li>Odell Gaier</li>
+                    <li>Odell Gayer</li>
+                </ul>
+            </section>
+
+            <section id="letter-p">
+                <h2>p</h2>
+                <ul>
+                    <li>Pierre Goehring</li>
+                    <li>Peter Goehring</li>
+                </ul>
+            </section>
+
+            <section id="letter-q">
+                <h2>q</h2>
+                <ul>
+                    <li>Quincy Jones </li>
+                    <li>Q-park Amsterdam</li>
+                    </ul>
+            </section>
+
+            <section id="letter-r">
+                <h2>r</h2>
+                <ul>
+                    <li>Refugia Echols</li>
+                    <li>Regina Everson</li>
+                    </ul>
+            </section>
+
+            <section id="letter-s">
+                <h2>s</h2>
+                <ul>
+                    <li>Refugia Echols</li>
+                    <li>Regina Everson</li>
+                    </ul>
+            </section>
+
+            <section id="letter-t">
+                <h2>t</h2>
+                <ul>
+                    <li>Timothy Bradley</li>
+                    <li>Tom Everson</li>
+                    </ul>
+            </section>
+
+            <section id="letter-u">
+                <h2>u</h2>
+                <ul>
+                    <li>Ultimate lala</li>
+                    </ul>
+            </section>
+
+            <section id="letter-v">
+                <h2>v</h2>
+                <ul>
+                    <li>Veronica Valala</li>
+                    <li>Veronica Valala</li>
+                    <li>Veronica Valala</li>
+                </ul>
+            </section>
+
+            <section id="letter-w">
+                <h2>w</h2>
+                <ul>
+                    <li>Walker Schultheis</li>
+                    <li>Warner Chenoweth</li>
+                    <li>Wilhemina Seim</li>
+                </ul>
+            </section>
+
+            <section id="letter-x">
+                <h2>x</h2>
+                <ul>
+                    <li>Xan Xan</li>
+                </ul>
+            </section>
+
+            <section id="letter-y">
+                <h2>y</h2>
+                <ul>
+                    <li>Yolanda Someone</li>
+                    </ul>
+            </section>
+
+            <section id="letter-z">
+                <h2>z</h2>
+                <ul>
+                    <li>Zazi Zaza</li>
+                    <li>Zidane</li>
+                </ul>
+            </section>
+        </main>
+
+<script rel="script" src="/js/script.js"></script>
+
+</body>
+</html>
