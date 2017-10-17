@@ -35,9 +35,25 @@ nav ul {
     height: 95vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;;
+    justify-content: space-between;
 }
 
 header, main {
     margin-left: 2.5em;
+}
+
+section:last-child {
+    padding-bottom: 40em;
+}
+
+@supports(scroll-behavior: smooth) {
+    main {
+        /* scroll-behavior: smooth; */
+        /* height: 100vh;
+        overflow-y: auto; */
+    }
+}
+
+.hide {
+    display: none;
 }
