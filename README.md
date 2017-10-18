@@ -32,6 +32,13 @@ Using tabs to navigate is possible. The app is semantically made with the correc
 
 On modern browsers the indicator to see hich letter you are at the contact list animates to indicate where you are in the list.
 
+### Latest firefox or Chrome
+Indicator            |  autosuggest updates as you type
+:-------------------------:|:-------------------------:
+![Firefox](images/firefox.png) |  ![Firefox](images/firefox2.png)
+
+Here you can see the app when every feature works. There is an indicator to give the user feedback to where he is in the list. Auto suggest works dynamically, and smoothscrolling is enabled and working as intended.
+
 ## Device Support
 most browser on mobile Devices. Should work on Kindle although functionality is limited for obvious reasons.
 
