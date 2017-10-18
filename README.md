@@ -1,6 +1,6 @@
 # contact list prototype
 
-## [Live version](https://bt-eind-gaodmkonjk.now.sh/)
+## [Live version](https://bt-eind-bduinocweb.now.sh/)
 
 ## Description
 This is a contactlist losely inspired by my phones contactlist. This demo is made using plain html, css and js. The idea was to start small: In a long list of names a user should be adble to find a contact.
