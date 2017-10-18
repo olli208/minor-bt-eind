@@ -1,25 +1,36 @@
-# make-a-list app demo
+# contact list prototype
 
 ## Description
-This demo is made using plain html, css and js. The idea was to start small: make a list where you can delete stuff. Making it work well with older browsers like IE 9. Working my way up to newer versions adding newer features. 
+This is a contactlist losely inspired by my phones contactlist. This demo is made using plain html, css and js. The idea was to start small: In a long list of names a user should be adble to find a contact.
 
-That's step 1. Step 2 was to make it so that when a user refresh the page the list still exists. So by using localstorage we will be able to get the items from the list and also remvoe them if we want.
+That's step 1. Step 2 was to make it so that goal is easier to do. The app is progresively enhanced. Meaning the basic functionality, which is find someone quick, should work on older browsers.
 
-Using a server we can store lists and show them to the user for later use. There are tow buttons at the bottom of the page. 
+## Core functionality
+- User can click on a letter and the list jumps to te first name which begins with the letter.
+- No matter what names are shown the autosuggest should work dynamically.
+- without clientside JavaScript a user should be able to get search results of names.
 
-- One saves the current list to the server.
-- The other button loads all items from localStorage.
-
-In the future I want it to work offline either completely, or part of it and also make it more Google Keep like, where you can save a list and give it a name so you can access it later.
+## Extra features/ enhancements
+- smooth scrolling when clicking on a letter from the side navigation
+- autosuggest shows in realtime while typng.
+- When a section of names is at the top of the page show indicator in side navigation.
 
 ## Browser Support
-The app works on some old and most if not all new browsers. Older browser have limited functionality especially when javascript is limited or not supported. When I talk about old browsers I almost always mean IE < 9.
+The app works on all browser, but functionality differs. Older browser have limited functionality especially when javascript is limited or not supported. Older browsers meaning IE < 9.
 
+### Intenet Explorer 8
 ![Internet Explorer 8](images/ie8.png)
+Navigating with side navigation works. Autosuggest does not work dynamicaly.
 
-From Internet Explorer 9 onwards it works as intended
-
+### internet Explorer 9
 ![Internet Explorer 9](images/ie9.png)
+Autosuggest works dynamicaly from IE 9 onwards.
+
+Navigating with the side nav works without javascript, so that works on all browsers. Javascript is only used for the smooth animation. There is also [this CSS version](https://css-tricks.com/almanac/properties/s/scroll-behavior/), which doesnt use Javascript at all, but you can't control the speed of the animation and support is very limited.
+
+Using tabs to navigate is possible. The app is semantically made with the correct html tags. Screenreader support should be no problem (tested witth NVDA).
+
+On modern browsers the indicator to see hich letter you are at the contact list animates to indicate where you are in the list.
 
 ## Device Support
 most browser on mobile Devices. Should work on Kindle although functionality is limited for obvious reasons.
@@ -27,42 +38,46 @@ most browser on mobile Devices. Should work on Kindle although functionality is 
 On mobile:
 ![android Chrome](images/mobile.png)
 
+![android Chrome](images/mobile2.png)
+
 ## Fallback
 Here are some of the problems I encoutenred:
-- problem #1 preventdefault doesnt work (on IE). 
+- problem #1 classList.add / classList.remove doesnt work (on IE). 
 fix
 ```
- ecvent.returnValue = false;
- // for event.preventDefault
+ <element>.className = ' <class>';
 ```
-- problem #2 forEach does not work on IE. fix: no forEach loops, only normal for loops
-- problem #3 e.target.matches is not supported (on IE). 
-fix: 
-```
-e.target.msMatchesSelector 
-```
-- problem #4 autofocus on textbox does not work.
-- problem #5 querySelector does not work on ie 8. 
 
+- problem #2 forEach does not work on IE. fix: no forEach loops, only normal for loops
+```
+for (var x = 0; x < array.length; x++) {
+   var list = array[x].innerHTML;
+   otherarray.push(list)
+ };
+```
+
+- problem #4 autofocus on textbox does not work.
 
 
 ## Run app
-When you have [NODE](https://nodejs.org/en/) & [NPM](https://www.npmjs.com/) on your computer run the following command:
+To see it live and go trough the Oauth flow your self clone this repo, run the following command in the terminal
+```
+git clone
+```
+
+Then start server by running the following in terminal from the folder
 ```
 npm start
 ```
+
 Then go to 
 > http://localhost:3000/
 
-Or use xpose server with:
+Or use xpose server to test performance with:
 ```
 npm run x
 ```
 
 ### Sources
-- [quirksmode (Event Delegation)](http://www.quirksmode.org/js/events_order.html)
-- [e.target.matches fix](http://stackoverflow.com/questions/37304037/why-my-code-dont-working-in-ie11)
-- [preventdefault fix](http://stackoverflow.com/questions/4479216/does-internet-explorer-supports-e-preventdefault)
-- [Javascript get index of child on click](https://stackoverflow.com/questions/20818790/javascript-get-index-of-child-on-click)
--[remove item from array in localstorage](https://stackoverflow.com/questions/39725221/remove-an-item-from-an-array-inside-a-local-storage-object-with-javascripthttps://stackoverflow.com/questions/20818790/javascript-get-index-of-child-on-click)
-
+- [classList not working in IE](https://stackoverflow.com/questions/8098406/code-with-classlist-does-not-work-in-ie)
+- [Element.getBoundingClientRect()](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect)
