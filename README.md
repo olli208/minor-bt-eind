@@ -35,10 +35,10 @@ On modern browsers the indicator to see hich letter you are at the contact list 
 ## Device Support
 most browser on mobile Devices. Should work on Kindle although functionality is limited for obvious reasons.
 
-On mobile:
-![android Chrome](images/mobile.png)
-
-![android Chrome](images/mobile2.png)
+### On mobile
+searchbar            |  indicator from the side navigation.
+:-------------------------:|:-------------------------:
+![](images/mobile.png)  |  ![](images/mobile2.png)
 
 ## Fallback
 Here are some of the problems I encoutenred:
