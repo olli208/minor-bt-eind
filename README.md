@@ -36,9 +36,9 @@ On modern browsers the indicator to see hich letter you are at the contact list 
 most browser on mobile Devices. Should work on Kindle although functionality is limited for obvious reasons.
 
 ### On mobile
-![android Chrome](images/mobile.png)
+<img align="left" width="400" height="auto" src="images/mobile.png">
 
-![android Chrome](images/mobile2.png)
+<img align="left" width="400" height="auto" src="images/mobile2.png">
 with indicator from the side navigation.
 
 ## Fallback
