@@ -1,0 +1,28 @@
+<% include partials/head.ejs %>
+<body>
+
+    <header>
+        <form action="/search" method="post">
+            <input type="search" placeholder="seach contacts" autocomplete="false" name="contact">
+            <!--<button id="searchBtn">search</button> -->
+        </form>
+    </header>
+
+    <div>
+        <main>
+            <section class="autocomplete-server">
+                <h2>result</h2>
+                <ul class="">
+                    <% searchResults.forEach(function(name) { %>
+                        <li> <%= name %> </li>
+                    <% }) %>
+                </ul>
+                <a href='/'>back</a>
+            </section>
+        </main>    
+    </div>
+
+<script rel="script" src="/js/script.js"></script>
+
+</body>
+</html>

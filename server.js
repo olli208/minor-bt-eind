@@ -23,63 +23,32 @@ http.listen(3000, function(){
 
 // Routers/pages
 app.get('/', home);
-app.get('/saved', saved);
-app.post('/remove', removeLists);
-app.post('/result', search);
+app.post('/search', search);
 
 var listArray = [];
 var savedLists = [];
 
 function home(req, res) {
-  res.render('index', {
-    // error: "Hello there, It seems that you turned JavaScript off or your browser is old. You'll be unable to add items to your list. Turn it on or use a better browser, you savage!"
-  })
-}
-
-function saved(req, res) {
-  res.render('savedlists' , {
-    lists: savedLists
-  })
+  res.render('index')
 }
 
 function search(req, res) {
-  console.log(req.body.query)
+  var searchResults = filterOutNames(req.body.contact , people);
+  console.log(searchResults);
+  res.render('result' , {searchResults});
 }
 
-function removeLists(){
-  savedLists = [];
-}
+// list of people
+var people = ["alfonzo schmitmeyer", "annelle ledger", "ardis newcombe", "billy deshotel", "buffy azure", "cecile umberger", "chase montilla", "classie baxter", "david correll", "delora kerrigan", "donette yahn", "emelina balogh", "francis underwood", "gaye saravia", "geoffrey epperson", "glenda neira", "helen lala", "ileen hermosillo", "imogene cresswell", "jasmine beier", "justine varan", "karolyn kyer &nbsp;", "katrina grigsby &nbsp;", "kenda felter &nbsp;", "kiana madewell &nbsp;", "lakenya commodore &nbsp;", "laurie severns", "lazaro lagace&nbsp;", "lola woodbridge", "lorraine preas", "luther trimmer ", "marc olmsted ", "mariana jellison ", "maryann stemm&nbsp;", "nick olmsted", "odell gaier", "odell gayer", "pierre goehring", "peter goehring", "quincy jones ", "q-park amsterdam", "refugia echols", "regina everson", "sophie echols", "sardine everson", "timothy bradley", "tom everson", "ultimate lala", "veronica valala", "veronica mars", "veronica someone", "walker schultheis", "warner chenoweth", "wilhemina seim", "xan xan", "yolanda someone", "zazi zaza", "zidane"]
 
+function filterOutNames(val , people) {
+  var peopleList = [];
 
-// Sockets Here
-io.sockets.on('connection', function (socket) {
-      socket.on('remove', function (data){
-        removeA(listArray, data);
-        console.log('update list' , listArray);
-      });
-
-      socket.on('new item', function (data){
-        listArray.push(data)
-        console.log('list from socket' , listArray);
-      });
-
-      socket.on('save list' , function(){
-        savedLists.push(listArray)
-        listArray = []
-        console.log('list' , listArray)
-        console.log('saved lists' , savedLists)
-      })
-});
-
-// Remove item in array on the basis of a string instead of indexOf...
-// source http://stackoverflow.com/questions/3954438/remove-item-from-array-by-value
-function removeA(arr) {
-  var what, a = arguments, L = a.length, ax;
-  while (L > 0 && arr.length) {
-    what = a[--L];
-    while ((ax= arr.indexOf(what)) !== -1) {
-      arr.splice(ax, 1);
+  for (i = 0; i < people.length; i++) {
+    if (val === people[i].slice(0, val.length)) {
+      peopleList.push(people[i]);
     }
   }
-  return arr;
+
+  return peopleList;
 }

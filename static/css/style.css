@@ -73,7 +73,7 @@ aside ul {
     position: fixed;
 }
 
-main ul, .autocomplete ul {
+main ul, .autocomplete ul, .autocomplete-server ul {
     padding: 0;
 }
 
@@ -82,11 +82,20 @@ aside ul a {
     color: #666;
 }
 
+.autocomplete-server a {
+    text-decoration: none;
+    background: #fff;
+    color: #666;
+    padding: 0.5em;
+    margin-top: 4em;
+    float: right;
+}
+
 aside li {
     list-style: none;
 }
 
-main, .autocomplete {
+main, .autocomplete, .autocomplete-server {
     width: 76%;
     /* height: 80vh;
     overflow: auto; */
@@ -99,7 +108,7 @@ main, .autocomplete {
     opacity: 0;
 }
 
-main li, .autocomplete li {
+main li, .autocomplete li, .autocomplete-server li {
     margin-bottom: 1em;
     list-style: none;
 }
@@ -120,7 +129,7 @@ main section {
     }
 } */
 
-.autocomplete {
+.autocomplete , .autocomplete-server {
     background: pink;
     color: #fff;
     /* padding: 1em 0 1em 3.5em;  */
