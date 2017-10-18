@@ -4,7 +4,6 @@ var bodyParser = require('body-parser');
 var path = require('path');
 
 var http = require('http').createServer(app);
-var io = require('socket.io').listen(http);
 
 // View Engine
 app.set('view engine' , 'ejs' );
