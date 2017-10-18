@@ -24,9 +24,6 @@ http.listen(3000, function(){
 app.get('/', home);
 app.post('/search', search);
 
-var listArray = [];
-var savedLists = [];
-
 function home(req, res) {
   res.render('index')
 }

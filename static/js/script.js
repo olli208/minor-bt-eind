@@ -83,21 +83,22 @@
     var sectionBegin = document.querySelectorAll('main section h2');
     var sideNav = document.querySelector('aside');
   
-    window.addEventListener('scroll', function(e) {        
-      sectionBegin.forEach(function(el) {
-          var divOffset = offset(el);
-          var currentLetter = el.innerHTML;
-  
-          if (divOffset.top > -100 && divOffset.top <= 50) {
-            // console.log(el , 'IS BOVEN');
-            
-            var letterNav = document.querySelector('aside #nav-' + currentLetter);
-            letterNav.classList.add('big');                   
-          }  else {
-            var letterNav = document.querySelector('aside #nav-' + currentLetter);
-            letterNav.classList.remove('big');   
-          }
-        })
+    window.addEventListener('scroll', function(e) {  
+      for (i = 0; i < sectionBegin.length; i++)  {
+        var divOffset = offset(sectionBegin[i]);
+        var currentLetter = sectionBegin[i].innerHTML;
+
+        if (divOffset.top > -100 && divOffset.top <= 50) {
+          // console.log(el , 'IS BOVEN');
+          
+          var letterNav = document.querySelector('aside #nav-' + currentLetter);
+          letterNav.className = ' nav big';                   
+        }  else {
+          var letterNav = document.querySelector('aside #nav-' + currentLetter);
+          letterNav.className = ' nav';   
+        }
+      }    
+
     })
   }
   
