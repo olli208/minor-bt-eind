@@ -49,22 +49,71 @@ searchbar            |  indicator from the side navigation.
 
 ## Fallback
 Here are some of the problems I encoutenred:
-- problem #1 classList.add / classList.remove doesnt work (on IE). 
+
+### classList
+classList.add / classList.remove doesnt work (on IE). 
 fix
 ```
  <element>.className = ' <class>';
 ```
 
-- problem #2 forEach does not work on IE. fix: no forEach loops, only normal for loops
+### forEach
+forEach does not work on IE. fix: no forEach loops, only normal for loops
 ```
 for (var x = 0; x < array.length; x++) {
    var list = array[x].innerHTML;
    otherarray.push(list)
  };
 ```
+### Autosuggest
+Realtime autosuggest works from IE > 9. Below that we have to rely on server side to do the same thing. Instead of it suggesting names in real time, the user has to hit 'enter' and then a page is loaded with the same names as you would with the real time version.
 
-- problem #4 autofocus on textbox does not work.
+### Smoothscrolling
+Unfortunately the CSS scroll-behavior is not supported on alot of browsers. So instead I choose a javascipt equivalent. But the functionality of navigating to a specific name or section still works, since that's beeing handled by pure HTML.
+```
+ <aside>
+   <ul>
+       <li><a href="#letter-a" class="nav" id="nav-a">a</a></li>
+       ...
+    </ul>
+  </aside>
+  
+  ...
+  
+  <section class="section-name" id="letter-a">
+        <h2>a</h2>
+        <ul>
+            <li>Alfonzo Schmitmeyer</li>
+            <li>Annelle Ledger</li>
+            <li>Ardis Newcombe</li>
+        </ul>
+    </section>
+```
 
+### Indicator
+Only on the later browsers (+ IE9 > ) does the indicator work. When scrolling, the app uses *element.getBoundingClientRect()* to determine the position of an element. With that I know which letter to animate.
+```
+window.addEventListener('scroll', function(e) {  
+  for (i = 0; i < <elements>.length; i++)  {
+    var divOffset = offset(<elements>[i]);
+    var currentLetter = <elements>[i].innerHTML;
+
+    if (divOffset.top > -100 && divOffset.top <= 50) {
+      var letterNav = document.querySelector('aside #nav-' + currentLetter);
+      letterNav.className = ' nav big';                   
+    }  else {
+      var letterNav = document.querySelector('aside #nav-' + currentLetter);
+      letterNav.className = ' nav';   
+    }
+  }    
+
+})
+
+function offset(el) {
+  var rect = el.getBoundingClientRect();
+  return { top: rect.top }
+}
+``` 
 
 ## Run app
 To see it live and go trough the Oauth flow your self clone this repo, run the following command in the terminal
