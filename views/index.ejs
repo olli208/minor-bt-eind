@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,14 +12,14 @@
 <body>
 
     <header>
-        <h1>Contacts</h1>
         <form>
             <input type="search" placeholder="seach contacts" autocomplete="false">
-            <button id="searchBtn">search</button>
-
-            <ul class="autocomplete hide"></ul>
+            <!--<button id="searchBtn">search</button> -->
         </form>
-        <nav>
+    </header>
+
+    <div>
+    <aside>
             <ul>
                 <li><a href="#letter-a" class="nav" id="nav-a">a</a></li>
                 <li><a href="#letter-b" class="nav" id="nav-b">b</a></li>
@@ -48,20 +48,25 @@
                 <li><a href="#letter-y" class="nav" id="nav-y">y</a></li>
                 <li><a href="#letter-z" class="nav" id="nav-z">z</a></li>
             </ul>
-        </nav>
-    </header>
+        </aside>
+
+        <section class="autocomplete hide">
+            <h2>result</h2>
+            <ul class="autocomplete-names"></ul>
+        </section>
 
         <main>
-            <section id="letter-a">
+
+            <section class="section-name" id="letter-a">
                 <h2>a</h2>
                 <ul>
                     <li>Alfonzo Schmitmeyer</li>
                     <li>Annelle Ledger</li>
                     <li>Ardis Newcombe</li>
                 </ul>
-            </section>
+            </>
 
-            <section id="letter-b">
+            <section class="section-name" id="letter-b">
                 <h2>b</h2>
                 <ul>
                     <li>Billy Deshotel</li>
@@ -69,7 +74,7 @@
                 </ul>
             </section>
 
-            <section id="letter-c">
+            <section class="section-name" id="letter-c">
                 <h2>c</h2>
                 <ul>
                     <li>Cecile Umberger</li>
@@ -78,7 +83,7 @@
                 </ul>
             </section>
 
-            <section id="letter-d">
+            <section class="section-name" id="letter-d">
                 <h2>d</h2>
                 <ul>
                     <li>David Correll</li>
@@ -87,37 +92,37 @@
                 </ul>
             </section>
 
-            <section id="letter-e">
+            <section class="section-name" id="letter-e">
                 <h2>e</h2>
                 <ul>
                     <li>Emelina Balogh</li>
                     </ul>
             </section>
 
-            <section id="letter-f">
+            <section class="section-name" id="letter-f">
                 <h2>f</h2>
                 <ul>
                     <li>Francis Underwood</li>
                     </ul>
             </section>
 
-            <section id="letter-g">
+            <section class="section-name" id="letter-g">
                 <h2>g</h2>
                 <ul>
                     <li>Gaye Saravia</li>
                     <li>Geoffrey Epperson</li>
-                    <li>Glenda Neira</li>  
+                    <li>Glenda Neira</li>
                 </ul>
             </section>
 
-            <section id="letter-h">
+            <section class="section-name" id="letter-h">
                 <h2>h</h2>
                 <ul>
                     <li>Helen Lala</li>
                     </ul>
             </section>
 
-            <section id="letter-i">
+            <section class="section-name" id="letter-i">
                 <h2>i</h2>
                 <ul>
                     <li>Ileen Hermosillo</li>
@@ -125,7 +130,7 @@
                     </ul>
             </section>
 
-            <section id="letter-j">
+            <section class="section-name" id="letter-j">
                 <h2>j</h2>
                 <ul>
                     <li>Jasmine Beier</li>
@@ -133,7 +138,7 @@
                 </ul>
             </section>
 
-            <section id="letter-k">
+            <section class="section-name" id="letter-k">
                 <h2>k</h2>
                 <ul>
                     <li>Karolyn Kyer  </li>
@@ -143,7 +148,7 @@
                     </ul>
             </section>
 
-            <section id="letter-l">
+            <section class="section-name" id="letter-l">
                 <h2>l</h2>
                 <ul>
                     <li>Lakenya Commodore  </li>
@@ -155,7 +160,7 @@
                 </ul>
             </section>
 
-            <section id="letter-m">
+            <section class="section-name" id="letter-m">
                 <h2>m</h2>
                 <ul>
                     <li>Marc Olmsted </li>
@@ -164,14 +169,14 @@
                 </ul>
             </section>
 
-            <section id="letter-n">
+            <section class="section-name" id="letter-n">
                 <h2>n</h2>
                 <ul>
                     <li>Nick Olmsted</li>
                 </ul>
             </section>
 
-            <section id="letter-o">
+            <section class="section-name" id="letter-o">
                 <h2>o</h2>
                 <ul>
                     <li>Odell Gaier</li>
@@ -179,7 +184,7 @@
                 </ul>
             </section>
 
-            <section id="letter-p">
+            <section class="section-name" id="letter-p">
                 <h2>p</h2>
                 <ul>
                     <li>Pierre Goehring</li>
@@ -187,7 +192,7 @@
                 </ul>
             </section>
 
-            <section id="letter-q">
+            <section class="section-name" id="letter-q">
                 <h2>q</h2>
                 <ul>
                     <li>Quincy Jones </li>
@@ -195,7 +200,7 @@
                     </ul>
             </section>
 
-            <section id="letter-r">
+            <section class="section-name" id="letter-r">
                 <h2>r</h2>
                 <ul>
                     <li>Refugia Echols</li>
@@ -203,15 +208,15 @@
                     </ul>
             </section>
 
-            <section id="letter-s">
+            <section class="section-name" id="letter-s">
                 <h2>s</h2>
                 <ul>
-                    <li>Refugia Echols</li>
-                    <li>Regina Everson</li>
+                    <li>Sophie Echols</li>
+                    <li>Sardine Everson</li>
                     </ul>
             </section>
 
-            <section id="letter-t">
+            <section class="section-name" id="letter-t">
                 <h2>t</h2>
                 <ul>
                     <li>Timothy Bradley</li>
@@ -219,23 +224,23 @@
                     </ul>
             </section>
 
-            <section id="letter-u">
+            <section class="section-name" id="letter-u">
                 <h2>u</h2>
                 <ul>
                     <li>Ultimate lala</li>
                     </ul>
             </section>
 
-            <section id="letter-v">
+            <section class="section-name" id="letter-v">
                 <h2>v</h2>
                 <ul>
                     <li>Veronica Valala</li>
-                    <li>Veronica Valala</li>
-                    <li>Veronica Valala</li>
+                    <li>Veronica Mars</li>
+                    <li>Veronica Someone</li>
                 </ul>
             </section>
 
-            <section id="letter-w">
+            <section class="section-name" id="letter-w">
                 <h2>w</h2>
                 <ul>
                     <li>Walker Schultheis</li>
@@ -244,21 +249,21 @@
                 </ul>
             </section>
 
-            <section id="letter-x">
+            <section class="section-name" id="letter-x">
                 <h2>x</h2>
                 <ul>
                     <li>Xan Xan</li>
                 </ul>
             </section>
 
-            <section id="letter-y">
+            <section class="section-name" id="letter-y">
                 <h2>y</h2>
                 <ul>
                     <li>Yolanda Someone</li>
                     </ul>
             </section>
 
-            <section id="letter-z">
+            <section class="section-name" id="letter-z">
                 <h2>z</h2>
                 <ul>
                     <li>Zazi Zaza</li>
@@ -266,6 +271,8 @@
                 </ul>
             </section>
         </main>
+    
+    </div>
 
 <script rel="script" src="/js/script.js"></script>
 
